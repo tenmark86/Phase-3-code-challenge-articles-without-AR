@@ -1,42 +1,38 @@
-class Magazine
+require_relative './article'
+
+class Magazine 
+  # Instance variables
   attr_accessor :name, :category
-
-  @@magazines = []
-
+  # Class variables
+  @@all = []
+  # Instance methods
   def initialize(name, category)
     @name = name
     @category = category
-    @@magazines << self
+    @@all << self
   end
 
-  def self.all
-    @@magazines
-  end
-
-  def contributors
-    articles_for_magazine_instance.map {|filterd_article| filterd_article.author}
-  end
-
-  def self.find_by_name magazine_name
-    Magazine.all.find {|magazine| magazine.name == magazine_name}
+  def articles
+    Article.all.filter {|article| article.magazine == self}
   end
 
   def article_titles
-    articles_for_magazine_instance.map {|filterd_article| filterd_article.title}
+    self.articles.map {|article| article.title}
+  end
+
+  def contributors
+    self.articles.map {|article| article.author}.uniq
   end
 
   def contributing_authors
-    author_tally = contributors.tally   
-    author_tally.filter do |key, value|
-      value >=2
-    end
+    self.contributors.filter {|author|author.articles.count > 2}
+  end 
+  # Class methods
+  def self.all
+    @@all
   end
 
-  private
-  
-  def articles_for_magazine_instance
-    Article.all.filter do |article|
-      article.magazine == self
-    end
+  def self.find_by_name(name)
+    self.all.find {|magazine| magazine.name == name}
   end
 end
