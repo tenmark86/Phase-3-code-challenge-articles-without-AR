@@ -7,11 +7,10 @@ end
 
 ###  WRITE YOUR TEST CODE HERE ###
 
-
-
-
-
-
+dave = Author.new('Dave')
+larry = Author.new('Larry')
+jessica = Author.new('Jessica')
+kaitlin = Author.new('Kaitlin')
 
 
 
