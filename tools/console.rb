@@ -32,6 +32,9 @@ article9=Article.new(mark,glamour, "kanye west looses 2bn dollars in a day")
 article10=Article.new(ann,glamour, "Rihanna releases new music on spotify")
 
 
+pp mark.articles
+pp ann.articles
+
 
 ### DO NOT REMOVE THIS
 binding.pry

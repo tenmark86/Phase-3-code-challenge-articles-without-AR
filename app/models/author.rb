@@ -1,5 +1,3 @@
-require_relative './article'
-
 class Author
   # Instance variables
   attr_reader :name
@@ -31,3 +29,5 @@ class Author
     @@all
   end
  
+  
+end
